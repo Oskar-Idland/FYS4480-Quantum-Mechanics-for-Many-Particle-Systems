@@ -1,0 +1,248 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{titlesec}
+% \usepackage[mathletters]{ucs}
+\usepackage{mathtools} %for \abs{x}
+\usepackage[warnings-off={mathtools-colon,mathtools-overbracket}]{unicode-math}
+% \setmainfont{TeX Gyre Schola}
+% \setmathfont{TeX Gyre Schola Math}
+\usepackage[utf8x]{inputenc}
+\usepackage{fontenc}
+\usepackage[margin=1.5in]{geometry}
+\usepackage{enumerate}
+\newtheorem{theorem}{Theorem}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\setlength{\parindent}{0cm}
+\usepackage{graphics}
+\usepackage{graphicx} % Required for including images
+\usepackage{subcaption}
+\usepackage{bigintcalc}
+\usepackage{pythonhighlight} %for pythonkode \begin{python}   \end{python}
+\usepackage{appendix}
+\usepackage{arydshln}
+\usepackage{physics}
+\usepackage{booktabs} 
+\usepackage{adjustbox}
+\usepackage{mdframed}
+\usepackage{relsize}
+\usepackage{physics}
+\usepackage[thinc]{esdiff}
+\usepackage{esint}  %for lukket-linje-integral
+\usepackage{xfrac} %for sfrac
+\usepackage[colorlinks=true,linktoc=page]{hyperref} %for linker, må ha med hypersetup
+\usepackage[noabbrev, nameinlink]{cleveref} % to be loaded after hyperref
+% \usepackage{amssymb} %\mathbb{R} for reelle tall, \mathcal{B} for "matte"-font
+\usepackage{listings} %for kode/lstlisting
+\usepackage{verbatim}
+\usepackage{graphicx,wrapfig,lipsum,caption} %for wrapping av bilder
+\usepackage[english]{babel}
+\usepackage{cancel}
+% \usepackage{alphabeta}
+\usepackage{mhchem} % for atom notasjon
+% \definecolor{codegreen}{rgb}{0,0.6,0}
+% \definecolor{codegray}{rgb}{0.5,0.5,0.5}
+% \definecolor{codepurple}{rgb}{0.58,0,0.82}
+% \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+% \lstdefinestyle{mystyle}{
+%     backgroundcolor=\color{backcolour},   
+%     commentstyle=\color{codegreen},
+%     keywordstyle=\color{magenta},
+%     numberstyle=\tiny\color{codegray},
+%     stringstyle=\color{codepurple},
+%     basicstyle=\ttfamily\footnotesize,
+%     breakatwhitespace=false,         
+%     breaklines=true,                 
+%     captionpos=b,                    
+%     keepspaces=true,                 
+%     numbers=left,                    
+%     numbersep=5pt,                  
+%     showspaces=false,                
+%     showstringspaces=false,
+%     showtabs=false,                  
+%     tabsize=2
+% }
+
+% \lstset{style=mystyle}
+\author{Oskar Idland}
+\title{Exercises Week 35}
+\date{}
+\begin{document}
+\maketitle
+\newpage
+
+\section*{Exercise 1}   
+\subsection*{a)}
+\[
+Φ^{AS} = \frac{1}{\sqrt{3!}} ∑_{p=0}^{3!} (-1)^p ∏_{i=1}^{3} ψ_{a_{i}}(x_{i})
+\]
+\begin{align*}
+\frac{1}{\sqrt{6}}\Big( &ψ_{α_{1}}(x_1)ψ_{α_2}(x_2)ψ_{α_3}(x_3) -  ψ_{α_{1}}(x_2)ψ_{α_1}(x_1)ψ_{α_3}(x_3) +  ψ_{α_{1}}(x_2)ψ_{α_2}(x_3)ψ_{α_3}(x_1) \\  -\ &ψ_{α_{1}}(x_3)ψ_{α_2}(x_2)ψ_{α_3}(x_1) +  ψ_{α_{1}}(x_3)ψ_{α_2}(x_1)ψ_{α_3}(x_2) -  ψ_{α_{1}}(x_1)ψ_{α_2}(x_3)ψ_{α_3}(x_2)\Big)
+\end{align*}
+
+\subsection*{b)}
+\[
+\bra{Φ_{λ}^{AS}}\ket{Φ_{λ}^{AS}} = ∫ \left|Φ_{λ}^{AS}(x_1, \ldots  ,x_N, α_1, \ldots  ,α_N)\right|^2 \mathrm{d}τ = 1
+\]
+We assume the particles-states to be orthonormal. 
+\[
+\bra{ψ_{α_i}}\ket{ψ_{α_j}} = ∫ ψ^{*}_{α_i}(\mathbf{r}) ψ_{α_j}(\mathbf{r})\mathrm{d}\mathbf{r} = δ_{ij}
+\]
+Using the antisymmetrizer operator  $\mathcal{A}$ and Hartree-function $ϕ_H$:
+\[
+\mathcal{A} = \frac{1}{N!} ∑_{p}^{} (-)^{p}\hat{P} \quad , \quad  ϕ_H = ∏_{i=1}^{N} ψ_{α_i}(x_i) 
+\]
+We can rewrite the Slater determinant to be the following:
+\[
+Φ_{λ}^{AS} = \sqrt{N!}\mathcal{A}ϕ_H
+\]
+We now have a new expression for the original inner product:
+\[
+\bra{Φ_{λ}^{AS}}\ket{Φ_{λ}^{AS}} = N! ∫ \mathcal{A}^{*}ϕ^{*}_H \mathcal{A}ϕ_H \mathrm{d}τ 
+\]
+Using that $\mathcal{A}^2 = \mathcal{A}$, as $\mathcal{A}$ is Hermitian, and that it is a projection operator we can simplify:
+\[
+N! ∫ ϕ_H^{*} \mathcal{A}ϕ_H \mathrm{d}τ = ∑_{p}^{} (-)^{p} ∫ ϕ_H^{*} \hat{P} ϕ_H \mathrm{d}τ 
+\]
+The permutation operator acts on the Hartree-function, which makes all it's states different. The only contribution comes when the permutation is identity. 
+\[
+\bra{Φ_{λ}^{AS}}\ket{Φ_{λ}^{AS}} = ∫ ϕ^{*}_H ϕ_H \mathrm{d}τ = 1
+\]
+
+\subsection*{c)}
+\paragraph{Onebody Operator:}
+\[
+\bra{Φ_{α_1 α_2}^{AS}} \hat{F} \ket{Φ_{α_1 α_2}^{AS}} = 2 ∫ ψ^{*}_{α_1}(x_1)ψ^{*}_{α_2}(x_2) \hat{F} \mathcal{A} ψ_{α_1}(x_1) ψ_{α_2}(x_2) \mathrm{d}τ
+\]
+Inserting its the operators definition:
+\[
+\bra{Φ_{α_1 α_2}^{AS}} \hat{F} \ket{Φ_{α_1 α_2}^{AS}} = ∑_{p}^{} (-)^{p} ∫ ψ^{*}_{α_1}(x_1)ψ^{*}_{α_2}(x_2) \hat{f}(x_1) \hat{P} ψ_{α_1}(x_1)ψ_{α_2}(x_2) \mathrm{d}τ + ∑_{p}^{} (-)^{p} ∫ ψ^{*}_{α_1}(x_1)ψ^{*}_{α_2}(x_2) \hat{f}(x_2) \hat{P} ψ_{α_1}(x_1)ψ_{α_2}(x_2) \mathrm{d}τ     
+\]
+The Hartree-function, when permuted, will make the integral vanish. There is only one term of each sum left. 
+\[
+\bra{Φ_{α_1 α_2}^{AS}} \hat{F} \ket{Φ_{α_1 α_2}^{AS}} = ∫ ψ^{*}_{α_1}(x_1)ψ^{*}_{α_2}(x_2) \hat{f}(x_1)  ψ_{α_1}(x_1)ψ_{α_2}(x_2) \mathrm{d}τ + ∫ ψ^{*}_{α_1}(x_1)ψ^{*}_{α_2}(x_2) \hat{f}(x_2)  ψ_{α_1}(x_1)ψ_{α_2}(x_2) \mathrm{d}τ   
+\]
+As the onebody operator only acts on a single particle, we can integrate over the other coordinate. The single-particle states are orthonormal, giving a unitary integral. 
+\[
+\bra{Φ_{α_1 α_2}^{AS}} \hat{F} \ket{Φ_{α_1 α_2}^{AS}} = ∫ ψ^{*}_{α_1}(\mathbf{r}) \hat{f}(\mathbf{r})ψ_{α_1}(\mathbf{r}) \mathrm{d}\mathbf{r} +  ∫ ψ^{*}_{α_2}(\mathbf{r}) \hat{f}(\mathbf{r})ψ_{α_2}(\mathbf{r}) \mathrm{d}\mathbf{r} 
+\]
+With this we get a general expression for a onebody operator:
+\[
+\bra{α_i}\hat{q}\ket{α_j} ≡  ∫ ψ^{*}_{α_i}(\mathbf{r}) \hat{q}(\mathbf{r})ψ_{α_j}(\mathbf{r}) \mathrm{d}\mathbf{r}
+\]
+This gives:
+\[
+\bra{Φ_{α_1 α_2}^{AS}}\hat{f}\ket{Φ_{α_1 α_2}^{AS}} ≡ \bra{α_1}\hat{f}\ket{α_1} + \bra{α_2}\hat{f}\ket{α_2}
+\]
+
+\paragraph{Twobody Operator:}
+\[
+\bra{Φ_{α_1 α_2}^{AS}}\hat{G}\ket{Φ_{α_1 α_2}^{AS}} = 2∫ ψ^{*}_{α_1}(x_1) ψ^{*}_{α_2}(x_2) \hat{G} \mathcal{A}ψ_{α_1}(x_2)ψ_{α_2}(x_2) \mathrm{d}τ
+\]
+Given that there generally only are two particles, we insert the definition of $\hat{G}$. 
+\[
+\bra{Φ_{α_1 α_2}^{AS}} \hat{G} \ket{Φ_{α_1 α_2}^{AS}} 2 ∫ ψ^{*}_{α_1}(x_1)ψ^{*}_{α_2}(x_2) \hat{G} \mathcal{A} ψ_{α_1}(x_1)ψ_{α_2}(x_2)\mathrm{d}τ
+\]
+\[
+\bra{Φ_{α_1 α_2}^{AS}} \hat{G} \ket{Φ_{α_1 α_2}^{AS}} = ∑_{p}^{} (-)^{p} ∫  ψ^{*}_{α_1}(x_1)ψ^{*}_{α_2}(x_2)\hat{P} ψ_{α_1}(x_1)ψ_{α_2}(x_2)\mathrm{d}τ
+\]
+Writing out the permutations:
+\begin{align*}
+\bra{Φ_{α_1 α_2}^{AS}} \hat{G} \ket{Φ_{α_1 α_2}^{AS}} = &∫ ψ^{*}_{α_1}(x_1)ψ^{*}_{α_2}(x_2)\hat{g}(x_1, x_2)ψ_{α_1}(x_1)ψ_{α_2}(x_2)\mathrm{d}τ  \\ -&∫ ψ^{*}_{α_1}(x_1)ψ^{*}_{α_2}(x_2)\hat{g}(x_1, x_2)\underbrace{ψ_{α_1}(x_2)ψ_{α_2}(x_1)}_{\text{switched pos.}}\mathrm{d}τ
+\end{align*}
+The first term is the Hartree-term, the second is the Fock-term. We can use a shorthand notation:
+\[
+\bra{αβ} \hat{q} \ket{γδ} ≡ ∫  ψ^{*}_{α_1}(x_1)ψ^{*}_{β}(x_2) \hat{q}(x_1, x_2) ψ_{γ}(x_1)ψ_{δ}(x_2)\mathrm{d}x_1 \mathrm{d}x_2
+\]
+With:
+\[
+\bra{αβ} \hat{q} \ket{γδ}_{AS} = \bra{αβ} \hat{q} \ket{γδ} + \bra{αβ} \hat{q} \ket{δγ} 
+\]
+This finally gives:
+\[
+\bra{Φ_{α_1 α_2}^{AS}} \hat{G} \ket{Φ_{α_1 α_2}^{AS}} = \bra{α_1 α_2} \hat{g} \ket{α_1 α_2}_{AS}
+\]
+As the particles are indistinguishable, the operators must have permutation symmetry, making them commute with the permutation operator. They should also be Hermitian, as they correspond to physical observables. 
+\[
+\left[\mathcal{A}, \hat{F}\right] = \left[\mathcal{A}, \hat{G}\right] = 0
+\]
+
+\section*{Exercise 2}
+\subsection*{a)}
+There are three states. One particle with spin up and one with spin down. As the particles are indistinguishable, we do not care which particle is which. We therefore have a total of six slater determinants: 
+\[
+11 \ 12 \ 13 \ 23 \ 33 \ 22
+\]
+If the particles must be in the same state, we have only three slater determinants
+\[
+11 \ 22 \ 33
+\]
+
+\subsection*{b)}
+Each element of the matrix representation of the Hamiltonian in the basis of $\left\{Φ_0, Φ_1\right\}$ is defined as following:
+\[
+\begin{pmatrix*}[r]
+ \bra{Φ_0} \hat{H} \ket{Φ_0} &  \bra{Φ_0} \hat{H} \ket{Φ_1} \\
+ \bra{Φ_1} \hat{H} \ket{Φ_0} &  \bra{Φ_1} \hat{H} \ket{Φ_1} \\
+\end{pmatrix*}
+\]
+The off-diagonal elements have energie values from the particle interactions, which we know have a value of $-g$. Using the definition of $\hat{H}_0$, we clearly see that the energie from this part of the total Hamiltonian, is $2d$ and $4d$. 
+\[
+\hat{H} = 
+\begin{pmatrix*}[r]
+ 2d-g & -g \\
+ -g & 4d-g \\
+\end{pmatrix*}
+\]
+
+To find the eigenvalues we solve the following:
+\[
+\left(\hat{H} - λI\right) \ket{Ψ} = 0 ⇒ \det\left(\hat{H} - λI\right) = 0
+\]
+\[
+λ^2 + (2g - 6d)λ + 8d^2 - 24dg
+\]
+\[
+λ_{±} = 3d - g ± \sqrt{g^2 + d^2}
+\]
+
+Adding it back in to the equation and diagonalizing we get:
+\[
+\begin{pmatrix*}[r]
+ \frac{d ± \sqrt{d^2 + g^2}}{g} & 0 \\
+ 0 & 1 \\
+\end{pmatrix*}
+\]
+Now we define our eigenstates from our basis:
+\[
+\ket{Ψ_0} = \frac{d + \sqrt{d^2 + g^2}}{g} \ket{Φ_0} \ket{Φ_1}
+\]
+\[
+\ket{Ψ_1} = \frac{d - \sqrt{d^2 + g^2}}{g} \ket{Φ_0} \ket{Φ_1}
+\]
+For simplification we add the new variable $γ ≡ d/g$. It represents the ratio between the energy from the interaction and the energy level. Using this on the eigenstates:
+\[
+\ket{Ψ_0} = \left(γ + \sqrt{1 + γ^2}\right)\ket{Φ_0} + \ket{Φ}
+\]
+\[
+\ket{Ψ_1} = \left(γ - \sqrt{1 + γ^2}\right)\ket{Φ_0} + \ket{Φ_1}
+\]
+
+\subsection*{c)}
+With $p = 3$, we only get a new element on the diagonal for the Hamiltonian
+\[
+\begin{pmatrix*}[r]
+ 2d-g & -g & -g \\
+ -g & 4d-g & -g \\
+ -g & -g & 6d-g \\
+\end{pmatrix*} = 
+\begin{pmatrix*}[r]
+ 2γ-1 & -1 & -1 \\
+ -1 & 4γ-1 & -1 \\
+ -1 & -1 & 6γ-1 \\
+\end{pmatrix*}
+\]
+
+
+\end{document}

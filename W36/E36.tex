@@ -1,0 +1,223 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{titlesec}
+%\usepackage[mathletters]{ucs}
+\usepackage{mathtools} %for \abs{x}
+\usepackage[warnings-off={mathtools-colon,mathtools-overbracket}]{unicode-math}
+%\setmainfont{TeX Gyre Schola}
+%\setmathfont{TeX Gyre Schola Math}
+\usepackage[utf8x]{inputenc}
+\usepackage{fontenc}
+\usepackage[margin=1.5in]{geometry}
+\usepackage{enumerate}
+\newtheorem{theorem}{Theorem}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\setlength{\parindent}{0cm}
+\usepackage{graphics}
+\usepackage{graphicx} % Required for including images
+\usepackage{subcaption}
+\usepackage{bigintcalc}
+\usepackage{pythonhighlight} %for pythonkode \begin{python}   \end{python}
+\usepackage{appendix}
+\usepackage{arydshln}
+\usepackage{physics}
+\usepackage{booktabs} 
+\usepackage{adjustbox}
+\usepackage{mdframed}
+\usepackage{relsize}
+\usepackage{physics}
+\usepackage[thinc]{esdiff}
+\usepackage{esint}  %for lukket-linje-integral
+\usepackage{xfrac} %for sfrac
+\usepackage[colorlinks=true,linktoc=page]{hyperref} %for linker, må ha med hypersetup
+\usepackage[noabbrev, nameinlink]{cleveref} % to be loaded after hyperref
+%\usepackage{amssymb} %\mathbb{R} for reelle tall, \mathcal{B} for 'matte'-font
+\usepackage{listings} %for kode/lstlisting
+\usepackage{verbatim}
+\usepackage{graphicx,wrapfig,lipsum,caption} %for wrapping av bilder
+\usepackage[english]{babel}
+\usepackage{cancel}
+%\usepackage{alphabeta}
+\usepackage{mhchem} % for atom notasjon
+%\definecolor{codegreen}{rgb}{0,0.6,0}
+%\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+%\definecolor{codepurple}{rgb}{0.58,0,0.82}
+%\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+%\lstdefinestyle{mystyle}{
+%     backgroundcolor=\color{backcolour},   
+%     commentstyle=\color{codegreen},
+%     keywordstyle=\color{magenta},
+%     numberstyle=\tiny\color{codegray},
+%     stringstyle=\color{codepurple},
+%     basicstyle=\ttfamily\footnotesize,
+%     breakatwhitespace=false,
+%     breaklines=true,
+%     captionpos=b,
+%     keepspaces=true,
+%     numbers=left,
+%     numbersep=5pt,
+%     showspaces=false,
+%     showstringspaces=false,
+%     showtabs=false,
+%     tabsize=2
+% }
+% \lstset{style=mystyle}
+\author{Oskar Idland}
+\title{Exercises Week 36}
+\date{}
+\begin{document}
+% \tableofcontents
+\maketitle
+\newpage
+
+\section*{Exercise 1}
+\subsection*{a)}
+\[
+\bra{SD} \hat{F} \ket{SD}
+\]
+The onebody operator $\hat{F}$ can be written as:
+\[
+\hat{F} = ∑_{i}^{N} \hat{f}(x_i) = ∑_{μν}^{} \bra{μ} \hat{h} \ket{ν} a^{†}_{μ}a_{ν}
+\]
+In this case, we have two particles, with states $ψ_i$ and $ψ_j$. 
+\[
+\bra{SD} \hat{F} \ket{SD} = ∑_{μν}^{} \underbrace{\bra{μ} \hat{f} \ket{ν} }_{\text{scalar}} \bra{SD} a^{†}_{μ} α_{ν} \ket{SD}
+\]
+We are summing over all states, but the product is only non-zero if $μ = ν$. We are left with:
+\[
+∑_{μ}^{} \bra{μ} \hat{f} \ket{μ} \bra{SD}a^{†}_{μ}a_{μ}\ket{SD} = ∑_{μ}^{} \bra{μ} \hat{f} \ket{μ}
+\]
+
+The twobody operator $\hat{G}$ can be written as: 
+\[
+\hat{G} = ∑_{i>j}^{N} \hat{g}(x_i, x_j) = \frac{1}{2} ∑_{μνδγ}^{} \bra{μν} \hat{g} \ket{δγ} a^{†}_{μ}a^{†}_{ν}a_{δ}a_{γ}
+\]
+\[
+\bra{SD}\hat{G}\ket{SD} = \frac{1}{2} ∑_{μνδγ}^{} \bra{μν} \hat{g} \ket{δγ} \bra{SD} a^{†}_{μ}a^{†}_{ν}a_{δ}a_{γ} \ket{SD}
+\]
+If $μ = ν$ or $δ = γ$, as $a_{μ}$, we get zero as $a^{†}_{μ}a^{†}_{μ} \ket{SD} = 0$, or $a_{μ}a_{μ}\ket{SD}$. We also need to have $μ = δ$ or $ν = γ$, to add back the particles we removed. 
+\[
+\bra{SD}\hat{G}\ket{SD} = \frac{1}{2} ∑_{μν}^{} \left( \bra{μν}\hat{g}\ket{μν} \bra{SD}a^{†}_{μ}a^{†}_{ν}a_{μ}a_{ν}\ket{SD} +  \bra{μν}\hat{g}\ket{νμ} \bra{SD}a^{†}_{μ}a^{†}_{ν}a_{μ}a_{ν}\ket{SD}\right)
+\]
+As the creation and annihilation operators for different particles work independently, we know that $a^{†}_{μ}a^{†}_{ν}a_{μ}a_{ν} = a^{†}_{μ}a_{μ}a^{†}_{ν}a_{ν}$. We also have the anticommutation relations:
+\[
+a^{†}_{μ}a^{†}_{ν} = -a^{†}_{ν}a^{†}_{μ} \quad , \quad  a_{μ}a_{ν} = -a_{ν}a_{μ} \quad , \quad  a^{†}_{μ}a_{ν} = δ_{μν} - a_{ν}^{†}a_{μ}
+\]
+The number operator is defined as:
+\[
+\hat{n}_{μ} = a^{†}_{μ}a_{μ}
+\]
+With this we can simplify the above:
+\[
+\bra{SD}a^{†}_{μ}a^{†}_{ν}a_{ν}a_{μ}\ket{SD} = \bra{SD}a^{†}_{μ}a_{μ}a^{†}_{ν}a_{ν}\ket{SD} = \bra{SD}n_{μ}n_{ν}\ket{SD} = 1
+\]
+\[
+\bra{SD}a^{†}_{μ}a^{†}_{ν}a_{μ}a_{ν}\ket{SD} = - \bra{SD}a^{†}_{μ}a_{μ}a^{†}_{ν}a_{ν}\ket{SD} = - \bra{SD}n_{μ}n_{ν}\ket{SD} = -1
+\]
+With this we get:
+\[
+\bra{SD}\hat{G}\ket{SD} = \frac{1}{2} ∑_{μν}^{} \left( \bra{μν}\hat{g}\ket{μν} -  \bra{μν}\hat{g}\ket{νμ} \right)
+\]
+We see that this is the Hartree and Fock terms. 
+
+\subsection*{b)}
+\paragraph{Onebody}
+\[
+\bra{SD} \hat{F} \ket{SD_{i}^{j}}. 
+\]
+For this, we must take into account that $\bra{SD}\ket{SD_{i}^{j}} = 0$. Using the creation and annihilation operators we can get the original slater determinant back: 
+\[
+a^{†}_{i}a_{j}\ket{SD_{i}^{j}} = \ket{SD}
+\]
+The integral vanishes for combinations other than $μ$ and $ν$. 
+\[
+\bra{SD} \hat{F} \ket{SD_{i}^{j}} = \bra{i}\hat{f}\ket{j}  
+\]
+
+\paragraph{Twobody}
+\[
+\bra{SD}\hat{G}\ket{SD_{i}^{j}}  \frac{1}{2}∑_{μν}^{} \bra{μν}\hat{g}\ket{δγ} \bra{SD}a^{†}_{μ}a^{†}_{ν}a_{δ}a_{γ}\ket{SD_{i}^{j}} 
+\]
+To add to the sum, the product must be non-zero. This can't happen when the indices are the same, as we make a permutation to $\ket{SD}$. We sum over a single indices instead:
+\begin{align*}
+\bra{SD}\hat{G}\ket{SD_{i}^{j}} = \frac{1}{2} ∑_{μ}^{} \Big[ 
+  &\bra{μi}\hat{g}\ket{μj} \bra{SD}a^{†}_{μ}a^{†}_{i}a_{j}a_{μ}\ket{SD_{i}^{j}} \\
++ & \bra{μi}\hat{g}\ket{jμ} \bra{SD}a^{†}_{μ}a^{†}_{i}a_{μ}a_{j}\ket{SD_{i}^{j}} \\
++ & \bra{iμ}\hat{g}\ket{μj} \bra{SD}a^{†}_{i}a^{†}_{μ}a_{μ}a_{j}\ket{SD_{i}^{j}} \\
++ & \bra{iμ}\hat{g}\ket{jμ} \bra{SD}a^{†}_{i}a^{†}_{μ}a_{μ}a_{j}\ket{SD_{i}^{j}} \Big]
+\end{align*}
+
+This can be simplified by the fact that generally $\bra{μν}\hat{q}\ket{δγ} = \bra{νμ}\hat{q}\ket{γδ}$ and using the anticommutation relations.  
+\[
+∑_{μ}^{} \Big[\bra{μi}\hat{g}\ket{μj} - \bra{μi}\hat{g}\ket{jμ}\Big]
+\]
+
+\subsection*{c)}
+\paragraph{Onebody} 
+\[
+\bra{SD}\hat{F}\ket{SD_{ij}^{kl}} = ∑_{μν}^{}  \bra{μ}\hat{f}\ket{ν} \bra{SD}a^{†}_{μ}a_{ν}\ket{SD_{ij}^{kl}}
+\]
+As we switch out tow particles, we have no equal indices between the two slater determinants. This gives:
+\[
+\bra{SD}\hat{F}\ket{SD_{ij}^{kl}} = 0
+\]
+
+\paragraph{Twobody}
+\[
+\bra{SD}\hat{G}\ket{SD_{ij}^{kl}} = \frac{1}{2} ∑_{μν}^{} \bra{μν}\hat{g}\ket{δγ} \bra{SD}a^{†}_{μ}a^{†}_{ν}a_{δ}a_{γ}\ket{SD_{ij}^{kl}}
+\]
+As the permutation of the slater determinant switches state $ϕ_i$ and $ϕ_j$ with $ϕ_k$ and $ϕ_l$ respectively, we only see a non-zero contribution when the $ϕ_k$ and $ϕ_l$ are annihilated, and $ϕ_i$ and $ϕ_j$ are created. This gives:
+
+\begin{align*}
+\bra{SD}\hat{G}\ket{SD_{ij}^{kl}} = \frac{1}{2}\Big[
+  & \bra{ij}\hat{g}\ket{kl} \bra{SD}a^{†}_ia^{†}_ja_ka_l\ket{SD_{ij}^{kl}} \\
++ & \bra{ij}\hat{g}\ket{lk} \bra{SD}a^{†}_ia^{†}_ja_la_k\ket{SD_{ij}^{kl}} \\
++ & \bra{ji}\hat{g}\ket{kl} \bra{SD}a^{†}_ja^{†}_ia_ka_l\ket{SD_{ij}^{kl}} \\
++ & \bra{ji}\hat{g}\ket{lk} \bra{SD}a^{†}_ja^{†}_ia_l a_k\ket{SD_{ij}^{kl}}
+\Big]
+\end{align*}
+Using the same simplifications as before, we get:
+\[
+\bra{SD}\hat{G}\ket{SD_{ij}^{kl}} = \bra{ij}\hat{g}\ket{kl} - \bra{ij}\hat{g}\ket{lk}
+\]
+
+With no permutation, the onebody operator has $N$ terms, and the twobody had $N^2/2$. With two permutations, we have $0$ terms for the onebody operator, and the twobody havinging $N$ terms. With three permutations, both the onebody and twobody operator have $0$ terms. A three body operator would have a single term. 
+
+\section*{Exercise 2}
+\subsection*{a)}
+We examine the case when $N = 2$:
+\[
+Ψ_{\text{AS}} = \frac{1}{\sqrt{2}} \left( ψ_1(\mathbf{x_1})ψ_2(\mathbf{x_2}) - ψ_1(\mathbf{x_2})ψ_2(\mathbf{x_1}) \right)
+\]
+\[
+n(\mathbf{x}) = 2 ∫ \ \mathrm{d}x_1 \ \mathrm{d}x_2 \left|Ψ_{\text{AS}}\right|^2
+\]
+\[
+n(\mathbf{x}) = 2 ∫ \ \mathrm{d}x_1 \ \mathrm{d}x_2 \frac{1}{\sqrt{2}} \Big( ψ_1(\mathbf{x_1})ψ_2(\mathbf{x_2}) - ψ_1(\mathbf{x_2})ψ_2(\mathbf{x_1}) \Big)^{*} \frac{1}{\sqrt{2}}\Big( ψ_1(\mathbf{x_1})ψ_2(\mathbf{x_2}) - ψ_1(\mathbf{x_2})ψ_2(\mathbf{x_1}) \Big)
+\]
+Only the parallel products are non-zero. 
+\[
+n(\mathbf{x}) = ψ^{*}_1ψ_1 + ψ^{*}_2ψ_2 = \left|ψ_1\right|^2 + \left|ψ_2\right|^2 = ∑_{k}^{} \left|ψ_k\right|^2
+\]
+
+\subsection*{b)}
+We already know that:
+\[
+\bra{SD}\hat{F}\ket{SD} = ∑_{α}^{} \bra{α}\hat{f}\ket{α}
+\]
+Which in this case is:
+\[
+\bra{α_1α_2}\hat{F}\ket{α_1α_2} = \bra{α_1}\hat{f}\ket{α_1} + \bra{α_2}\hat{f}\ket{α_2} 
+\]
+Same goes for twobody operator:
+\[
+\bra{SD}\hat{G}\ket{SD} = \frac{1}{2} \Big( \bra{α_1α_2}\hat{g}\ket{α_1α_2} - \bra{α_1α_2}\hat{g}\ket{α_2α_1} + \bra{α_2α_1}\hat{g}\ket{α_1α_2} - \bra{α_2α_1}\hat{g}\ket{α_2α_1} \Big)
+\]
+Again, using the fact that $\bra{μν}\hat{g}\ket{δγ} = \bra{νμ}\hat{g}\ket{γδ}$, as we made to permutations, we can simplify to:
+\[
+\bra{α_1α_2}\hat{G}\ket{α_1α_2} = \bra{α_1α_2}\hat{g}\ket{α_1α_2} - \bra{α_1α_2}\hat{g}\ket{α_2α_1} = \bra{α_1α_2}\hat{g}\ket{α_1α_2}_{\text{AS}}
+\]
+
+\end{document}
